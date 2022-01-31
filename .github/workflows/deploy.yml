@@ -1,0 +1,33 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy-package:
+    # if: ${{ github.event.label.name == 'release' }}
+    # if: "contains(github.event.head_commit.message, '[release]')"
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [13.x]
+
+    env:
+      CI: true
+
+    permissions:
+      contents: write # need to write git tags and GitHub Releases
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          # Number of commits to fetch. 0 indicates all history for all branches and tags.
+          # we need to pull down at least the commits since the last version, for lerna version
+          fetch-depth: 256
+      - name : GITHUB CONTEXT
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
