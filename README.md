@@ -1,2 +1,2 @@
 # actions-test
-Testing for GH Actions
+Testing for GH Actions.
