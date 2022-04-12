@@ -1,16 +1,13 @@
 name: Deploy (labelled)
 
 on:
-  pull_request:
+  push:
     branches:
       - main
-    types: [closed]
 
 jobs:
   deploy-package:
     runs-on: ubuntu-latest
-
-    if: ${{github.event.pull_request.merged == true}}
 
     strategy:
       matrix:
