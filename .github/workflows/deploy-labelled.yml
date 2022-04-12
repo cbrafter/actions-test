@@ -10,7 +10,7 @@ jobs:
   deploy-package:
     runs-on: ubuntu-latest
     
-    if: ${{github.event.pull_request.merged == true && contains(github.event.pull_request.labels.*.name, "releases")}}
+    if: ${{github.event.pull_request.merged == true && contains(github.event.pull_request.labels.*.name, 'release')}}
     
     strategy:
       matrix:
